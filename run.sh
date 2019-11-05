@@ -8,7 +8,9 @@ message='Choose projects to run'
 # branch name $(git rev-parse --abbrev-ref HEAD)
 
 function openTab {
-    gnome-terminal --tab --working-directory="$PWD/$1" -- sh -c "$PROJECT_COMMAND; bash"
+    tab_title=${1::-1}
+
+    gnome-terminal --tab --working-directory="$PWD/$1" -t $tab_title -- sh -c "$PROJECT_COMMAND; bash"
 } 
 
 for folder in */ ; do
@@ -23,4 +25,3 @@ to_run=$(whiptail --checklist --separate-output --title "Folder projects" "$mess
 for project in ${to_run[@]} ; do
     openTab $project
 done
-
