@@ -10,7 +10,7 @@ message='Choose projects to run'
 function openTab {
     tab_title=${1::-1}
 
-    gnome-terminal --tab --working-directory="$PWD/$1" -t $tab_title -- sh -c "$PROJECT_COMMAND; bash"
+    gnome-terminal --tab --working-directory="$PWD/$1" -t $tab_title -- bash -ic "$PROJECT_COMMAND"
 } 
 
 for folder in */ ; do
